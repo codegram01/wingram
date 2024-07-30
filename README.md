@@ -5,7 +5,8 @@ Wingram like social platform and cloud storage and anything can help you
 
 # Channel
 - [Youtube](https://www.youtube.com/@WingramOrg)
-- [Chat](https://t.me/WingramOrg)
+- [Chat](https://t.me/WingramOrgChat)
+- [Channel](https://t.me/WingramOrg)
 
 # Feature
 - Connect people
