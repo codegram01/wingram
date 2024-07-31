@@ -15,7 +15,7 @@ func (s *Server) MakeHandler() {
 	mux.Handle("/public/", s.staticHandler())
 	mux.Handle("/favicon.ico", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		log.Println("on get favicon.ico")
-		
+
 		serveFileFS(w, r, s.staticFS, "favicon/favicon.ico")
 	}))
 }
