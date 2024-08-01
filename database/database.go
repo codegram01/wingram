@@ -52,6 +52,8 @@ func ConnectGCloud() (*Db, func() error) {
 	db := &Db{
 		Con: con,
 	}
+
+	log.Println("Connect to GSQL success")
   
 	return db, cleanup
   }
