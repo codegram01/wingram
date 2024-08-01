@@ -10,19 +10,23 @@ func (s *Server) MakeHandler() {
 	mux := s.mux
 
 	mux.HandleFunc("/", s.homeHandler)
-	mux.HandleFunc("/about", s.staticPageHandler("about", "About Page"))
 
 	mux.Handle("/public/", s.staticHandler())
 	mux.Handle("/favicon.ico", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		log.Println("on get favicon.ico")
-		
+
 		serveFileFS(w, r, s.staticFS, "favicon/favicon.ico")
 	}))
+
+	mux.HandleFunc("/about", s.staticPageHandler("about", "About Page"))
+
+	mux.HandleFunc("GET /accounts", s.getAccountsHandler)
+	mux.HandleFunc("GET /test", s.testHandler)
 }
 
-func (s *Server) homeHandler(w http.ResponseWriter, req *http.Request) {
-	if req.URL.Path != "/" {
-		http.NotFound(w, req)
+func (s *Server) homeHandler(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path != "/" {
+		http.NotFound(w, r)
 		return
 	}
 

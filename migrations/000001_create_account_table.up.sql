@@ -1,0 +1,11 @@
+
+BEGIN;
+
+CREATE TABLE account (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    email VARCHAR(200) NOT NULL UNIQUE,
+    bio VARCHAR(1000)
+);
+
+END;

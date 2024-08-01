@@ -46,7 +46,6 @@ func (s *Server) newBasePage(r *http.Request, title string) BasePage {
 	}
 }
 
-
 // staticPageHandler handles requests to a template that contains no dynamic
 // content.
 func (s *Server) staticPageHandler(templateName, title string) http.HandlerFunc {

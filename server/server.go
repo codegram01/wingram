@@ -6,21 +6,32 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/codegram01/wingram/config"
+	"github.com/codegram01/wingram/database"
 	"github.com/codegram01/wingram/server/templates"
 	"github.com/google/safehtml/template"
 )
 
 type Server struct {
-	templates  map[string]*template.Template
-	mux *http.ServeMux
-	staticFS fs.FS
+	mode string
+
+	templates map[string]*template.Template
+	mux       *http.ServeMux
+	staticFS  fs.FS
+
+	db *database.Db
+	
 }
 
-func Init() {
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
-		log.Printf("defaulting to port %s", port)
+// Config when init server
+type ServerCfg struct {
+	Cfg *config.Config
+	Db *database.Db
+}
+
+func Init(scfg *ServerCfg) {
+	if scfg.Db == nil {
+		log.Fatal("Server need database to run")
 	}
 
 	ts, err := templates.ParsePageTemplates()
@@ -30,17 +41,20 @@ func Init() {
 
 	mux := http.NewServeMux()
 	server := &Server{
-		mux: mux,
+		mode: scfg.Cfg.Mode,
+		mux:       mux,
 		templates: ts,
-		staticFS: os.DirFS("static/public"),
+		staticFS:  os.DirFS("static/public"),
+		db: scfg.Db,
+		
 	}
 	server.MakeHandler()
 
 	s := &http.Server{
-		Addr:    ":" + port,
+		Addr:    ":" + scfg.Cfg.Port,
 		Handler: mux,
 	}
 
-	log.Printf("listening on port %s", port)
+	log.Printf("Server running on Port: %s", scfg.Cfg.Port)
 	log.Fatal(s.ListenAndServe())
 }
