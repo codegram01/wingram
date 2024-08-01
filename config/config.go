@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"log"
 	"os"
 )
 
@@ -36,6 +37,15 @@ func GetEnv(key string, defaultVal string) string {
 	}
 
 	return val
+}
+
+// Stop running if not have some env
+func MustGetEnv(k string) string {
+	v := os.Getenv(k)
+	if v == "" {
+			log.Fatalf("Warning: %s environment variable not set.", k)
+	}
+	return v
 }
 
 func (cfg *Config) GetDbConStr() string {
