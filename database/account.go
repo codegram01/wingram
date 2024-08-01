@@ -2,17 +2,12 @@ package database
 
 import (
 	"fmt"
+
+	"github.com/codegram01/wingram/model"
 )
 
-type Account struct {
-	Id int
-	Name string
-	Email string
-	Bio string
-}
-
-func (db *Db)InsertAccount(accInp *Account) (Account, error) {
-	var acc Account
+func (db *Db)InsertAccount(accInp *model.Account) (model.Account, error) {
+	var acc model.Account
 
 	queryStr := `
 		INSERT INTO account 
@@ -38,8 +33,8 @@ func (db *Db)InsertAccount(accInp *Account) (Account, error) {
 }
 
 
-func (db *Db)GetAccounts() ([]Account, error) {
-	var accounts []Account
+func (db *Db)GetAccounts() ([]model.Account, error) {
+	var accounts []model.Account
 
 	queryStr := `
 		SELECT 
@@ -54,7 +49,7 @@ func (db *Db)GetAccounts() ([]Account, error) {
 	defer rows.Close()
 
 	for rows.Next() {
-		var acc Account
+		var acc model.Account
 		if err := rows.Scan(&acc.Id, &acc.Name, &acc.Email, &acc.Bio); err != nil {
 			return nil, fmt.Errorf("GetAccounts: %v", err)
 		}

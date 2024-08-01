@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"github.com/codegram01/wingram/config"
+	"github.com/codegram01/wingram/model"
 )
 
 func TestInsertAccount(t *testing.T) {
@@ -15,7 +16,7 @@ func TestInsertAccount(t *testing.T) {
 		log.Fatal(err)
 	}
 
-	account, err := db.InsertAccount(&Account{
+	account, err := db.InsertAccount(&model.Account{
 		Name: "alex",
 		Email: "alex@gmail.com",
 		Bio: "From England",

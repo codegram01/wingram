@@ -17,7 +17,7 @@ func main() {
 	}
 
 	sCfg := &server.ServerCfg{
-		Port: cfg.Port,
+		Cfg: cfg,
 		Db: db,
 	}
 	server.Init(sCfg)

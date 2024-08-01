@@ -55,6 +55,8 @@ func ParsePageTemplates() (map[string]*template.Template, error) {
 	htmlSets := [][]string{
 		{"home"},
 		{"about"},
+		{"account"},
+		{"test"},
 	}
 
 	for _, set := range htmlSets {
