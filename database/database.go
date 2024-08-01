@@ -57,4 +57,3 @@ func ConnectGCloud() (*Db, func() error) {
   
 	return db, cleanup
   }
-  
