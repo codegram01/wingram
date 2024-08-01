@@ -20,10 +20,10 @@ GRANT CREATE ON SCHEMA public TO testuser;
 
 Create Migrate 
 ```sh
-./devtools/create_migrate.sh [name_migrate]
+./scripts/create_migrate.sh [name_migrate]
 ```
 
 Run Migrate
 ```sh
-./devtools/migrate.sh [up|down|force|version]
+./scripts/migrate.sh [up|down|force|version]
 ```

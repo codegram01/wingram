@@ -1,4 +1,4 @@
-source devtools/lib.sh || { echo "Are you at repo root?"; exit 1; }
+source scripts/lib.sh || { echo "Are you at repo root?"; exit 1; }
 
 usage() {
   cat <<EOUSAGE
@@ -7,28 +7,28 @@ EOUSAGE
 }
 
 database_host="localhost"
-if [[ $DB_HOST != "" ]]; then
-  database_host=$DB_HOST
+if [[ $WINGRAM_DB_HOST != "" ]]; then
+  database_host=$WINGRAM_DB_HOST
 fi
 database_port="5432"
-if [[ $DB_PORT != "" ]]; then
-  database_port=$DB_PORT
+if [[ $WINGRAM_DB_PORT != "" ]]; then
+  database_port=$WINGRAM_DB_PORT
 fi
 database_user="testuser"
-if [[ $DB_USER != "" ]]; then
-  database_user=$DB_USER
+if [[ $WINGRAM_DB_USER != "" ]]; then
+  database_user=$WINGRAM_DB_USER
 fi
 database_name='testdb'
-if [[ $DB_NAME != "" ]]; then
-  database_name=$DB_NAME
+if [[ $WINGRAM_DB_NAME != "" ]]; then
+  database_name=$WINGRAM_DB_NAME
 fi
 database_password="testpassword"
-if [[ $DB_PASS != "" ]]; then
-  database_password=$DB_PASS
+if [[ $WINGRAM_DB_PASS != "" ]]; then
+  database_password=$WINGRAM_DB_PASS
 fi
 ssl_mode='disable'
-if [[ $DB_SSL != "" ]]; then
-  ssl_mode=$DB_SSL
+if [[ $WINGRAM_DB_SSL != "" ]]; then
+  ssl_mode=$WINGRAM_DB_SSL
 fi
 
 # Redirect stderr to stdout because migrate outputs to stderr, and we want

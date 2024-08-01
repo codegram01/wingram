@@ -6,20 +6,22 @@ import (
 )
 
 type Config struct {
+	Mode string
 	Port string
 	DbHost, DbPort, DbUser, DbName, DbPass, DbSSL string
 }
 
 func Init() *Config {
 	cfg := &Config{
-		Port: GetEnv("PORT", "8080"),
+		Mode: GetEnv("WINGRAM_MODE", "LOCAL"),
+		Port: GetEnv("WINGRAM_PORT", "8080"),
 
-		DbHost: GetEnv("DB_HOST", "localhost"),
-		DbPort: GetEnv("DB_PORT", "5432"),
-		DbUser: GetEnv("DB_USER", "testuser"),
-		DbName: GetEnv("DB_NAME", "testdb"),
-		DbPass: GetEnv("DB_PASS", "testpassword"),
-		DbSSL : GetEnv("DB_SSL", "disable"),
+		DbHost: GetEnv("WINGRAM_DB_HOST", "localhost"),
+		DbPort: GetEnv("WINGRAM_DB_PORT", "5432"),
+		DbUser: GetEnv("WINGRAM_DB_USER", "testuser"),
+		DbName: GetEnv("WINGRAM_DB_NAME", "testdb"),
+		DbPass: GetEnv("WINGRAM_DB_PASS", "testpassword"),
+		DbSSL : GetEnv("WINGRAM_DB_SSL", "disable"),
 	}
 	return cfg
 }
