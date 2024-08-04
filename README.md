@@ -1,12 +1,8 @@
 # wingram
 One platform for anything.
-
 Wingram like social platform and cloud storage and anything can help you
 
-# Channel
-- [Youtube](https://www.youtube.com/@WingramOrg)
-- [Chat](https://t.me/WingramOrgChat)
-- [Channel](https://t.me/WingramOrg)
+> The Wingram project is still just an idea. I haven't figured out the best way to make it happen yet.
 
 # Feature
 - Connect people
